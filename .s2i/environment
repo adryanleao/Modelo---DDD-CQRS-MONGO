@@ -1,0 +1,3 @@
+DOTNET_STARTUP_PROJECT=Modelo.WebApi/Modelo.WebApi.csproj
+DOTNET_SDK_VERSION=latest
+DOTNET_ASSEMBLY_NAME=Modelo.WebApi
