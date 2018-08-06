@@ -23,8 +23,6 @@ namespace Modelo.Domain.EventHandlers.Funcioanario
         public Task Handle(FuncionarioRegisteredEvent message, CancellationToken cancellationToken)
         {
             // Adicionar entidade no mongo
-            //var registerCommand = _mapper.Map<RegisterNewFuncionarioCommand>(funcionarioViewModel);
-            //Bus.SendCommand(registerCommand);
             return Task.CompletedTask;
         }
 
