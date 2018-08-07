@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Modelo.Application.Interfaces;
 using Modelo.Application.Services;
-using Modelo.Domain.Commands.Funcionario;
-using Modelo.Domain.Core.Bus;
 using Modelo.Domain.Interfaces;
 using Modelo.Infra.CrossCutting.Bus;
 using Modelo.Infra.Data.Repository;
@@ -17,11 +15,18 @@ using Modelo.Infra.Data.Context;
 using Modelo.Domain.Core.Notifications;
 using Modelo.Domain.Events.Funcionario;
 using Modelo.Domain.EventHandlers.Funcioanario;
-using Modelo.Domain.CommandHandlers;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
 using Modelo.Domain.Interfaces.ReadOnly;
 using Modelo.Infra.Data.Repository.ReadOnly;
+using Modelo.Domain.Commands.Funcionario.Denormalize;
+using Modelo.Domain.Core.Bus.Normalize;
+using Modelo.Domain.Commands.Funcionario.Normalize;
+using Modelo.Domain.CommandHandlers.Normalize;
+using Modelo.Domain.CommandHandlers.Denormalize;
+using Modelo.Domain.Core.Bus.Denormalize;
+using Infra.Data.Mongo.Repository;
+using Infra.Data.Mongo.Context;
+using Modelo.Domain.Interfaces.Denormalize;
 
 namespace Modelo.Infra.CrossCutting.IoC
 {
@@ -33,7 +38,8 @@ namespace Modelo.Infra.CrossCutting.IoC
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             // Domain Bus (Mediator)
-            services.AddScoped<IMediatorHandler, InMemoryBus>();
+            services.AddScoped<IMediatorHandlerNormalize, InMemoryBusNormalize>();
+            services.AddScoped<IMediatorHandlerDenormalize, InMemoryBusDenormalize>();
 
             // Application
             services.AddScoped<IFuncionarioAppService, FuncionarioAppService>();
@@ -49,11 +55,19 @@ namespace Modelo.Infra.CrossCutting.IoC
             services.AddScoped<IRequestHandler<UpdateFuncionarioCommand>, FuncionarioCommandHandler>();
             services.AddScoped<IRequestHandler<RemoveFuncionarioCommand>, FuncionarioCommandHandler>();
 
+            services.AddScoped<IRequestHandler<RegisterNewFuncionarioDenormalize>, FuncionarioDenormalizeHandler>();
+            services.AddScoped<IRequestHandler<UpdateFuncionarioDenormalize>, FuncionarioDenormalizeHandler>();
+            services.AddScoped<IRequestHandler<RemoveFuncionarioDenormalize>, FuncionarioDenormalizeHandler>();
+
             // Infra - Data
             services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
             services.AddScoped<IFuncionarioReadOnlyRepository, FuncionarioReadOnlyRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ModeloContext>();
+
+            services.AddScoped<IFuncionarioRepositoryDenormalize, FuncionarioRepositoryDenormalize>();
+            services.AddScoped<IFuncionarioReadOnlyRepositoryDenormalize, FuncionarioReadOnlyRepositoryDenormalize>();
+            services.AddScoped<MongoDbContext>();
         }
 
         public static void MigrateDB(IApplicationBuilder app)

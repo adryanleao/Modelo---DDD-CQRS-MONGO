@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Modelo.Domain.Commands.Funcionario;
+using Modelo.Domain.Commands.Funcionario.Normalize;
 using System;
 
 namespace Modelo.Domain.Validations.Funcionario

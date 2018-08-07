@@ -3,7 +3,7 @@
 using Modelo.Domain.Validations.Funcionario;
 using System;
 
-namespace Modelo.Domain.Commands.Funcionario
+namespace Modelo.Domain.Commands.Funcionario.Normalize
 {
     public class UpdateFuncionarioCommand : FuncionarioCommand
     {

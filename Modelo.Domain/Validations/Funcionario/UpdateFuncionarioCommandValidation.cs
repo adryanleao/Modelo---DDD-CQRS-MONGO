@@ -1,4 +1,4 @@
-﻿using Modelo.Domain.Commands.Funcionario;
+﻿using Modelo.Domain.Commands.Funcionario.Normalize;
 
 namespace Modelo.Domain.Validations.Funcionario
 {

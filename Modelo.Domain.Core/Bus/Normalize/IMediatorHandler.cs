@@ -2,9 +2,9 @@
 using Modelo.Domain.Core.Events;
 using System.Threading.Tasks;
 
-namespace Modelo.Domain.Core.Bus
+namespace Modelo.Domain.Core.Bus.Normalize
 {
-    public interface IMediatorHandler
+    public interface IMediatorHandlerNormalize
     {
         Task SendCommand<T>(T command) where T : Command;
         Task RaiseEvent<T>(T @event) where T : Event;

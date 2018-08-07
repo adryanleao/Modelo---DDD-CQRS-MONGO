@@ -5,8 +5,8 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Modelo.Application.Interfaces;
 using Modelo.Application.ViewModels;
-using Modelo.Domain.Commands.Funcionario;
-using Modelo.Domain.Core.Bus;
+using Modelo.Domain.Commands.Funcionario.Normalize;
+using Modelo.Domain.Core.Bus.Normalize;
 using Modelo.Domain.Interfaces.ReadOnly;
 
 namespace Modelo.Application.Services
@@ -14,15 +14,15 @@ namespace Modelo.Application.Services
     public class FuncionarioAppService : IFuncionarioAppService
     {
         private readonly IMapper _mapper;
-        private readonly IFuncionarioReadOnlyRepository _funcionarioReadOnlyRepository;
-        private readonly IMediatorHandler Bus;
+        private readonly IFuncionarioReadOnlyRepositoryDenormalize _funcionarioReadOnlyRepositoryDenormalize;
+        private readonly IMediatorHandlerNormalize Bus;
 
         public FuncionarioAppService(IMapper mapper,
-                                  IFuncionarioReadOnlyRepository funcionarioReadOnlyRepository,
-                                  IMediatorHandler bus)
+                                  IFuncionarioReadOnlyRepositoryDenormalize funcionarioReadOnlyRepositoryDenormalize,
+                                  IMediatorHandlerNormalize bus)
         {
             _mapper = mapper;
-            _funcionarioReadOnlyRepository = funcionarioReadOnlyRepository;
+            _funcionarioReadOnlyRepositoryDenormalize = funcionarioReadOnlyRepositoryDenormalize;
             Bus = bus;
         }
 
@@ -39,12 +39,12 @@ namespace Modelo.Application.Services
 
         public IEnumerable<FuncionarioViewModel> GetAll()
         {
-            return _funcionarioReadOnlyRepository.GetAll().ProjectTo<FuncionarioViewModel>();
+            return _funcionarioReadOnlyRepositoryDenormalize.GetAll().ProjectTo<FuncionarioViewModel>();
         }
 
         public FuncionarioViewModel GetById(Guid id)
         {
-            return _mapper.Map<FuncionarioViewModel>(_funcionarioReadOnlyRepository.GetById(id));
+            return _mapper.Map<FuncionarioViewModel>(_funcionarioReadOnlyRepositoryDenormalize.GetById(id));
         }
 
         public void Register(FuncionarioViewModel funcionarioViewModel)

@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Modelo.Domain.Core.Bus;
+using Modelo.Domain.Core.Bus.Normalize;
 using Modelo.Domain.Core.Notifications;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +11,10 @@ namespace Modelo.WebApi.Controllers
     public abstract class ApiControllerBase : ControllerBase
     {
         private readonly DomainNotificationHandler _notifications;
-        private readonly IMediatorHandler _mediator;
+        private readonly IMediatorHandlerNormalize _mediator;
 
         protected ApiControllerBase(INotificationHandler<DomainNotification> notifications,
-                                IMediatorHandler mediator)
+                                IMediatorHandlerNormalize mediator)
         {
             _notifications = (DomainNotificationHandler)notifications;
             _mediator = mediator;

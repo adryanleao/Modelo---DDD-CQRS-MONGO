@@ -1,5 +1,4 @@
-﻿using Modelo.Domain.Commands.Funcionario;
-using Modelo.Domain.Core.Bus;
+﻿
 using Modelo.Domain.Core.Notifications;
 using Modelo.Domain.Events.Funcionario;
 using Modelo.Domain.Interfaces;
@@ -9,8 +8,10 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Modelo.Domain.Interfaces.ReadOnly;
+using Modelo.Domain.Core.Bus.Normalize;
+using Modelo.Domain.Commands.Funcionario.Normalize;
 
-namespace Modelo.Domain.CommandHandlers
+namespace Modelo.Domain.CommandHandlers.Normalize
 {
     public class FuncionarioCommandHandler : CommandHandler,
         IRequestHandler<RegisterNewFuncionarioCommand>,
@@ -19,12 +20,12 @@ namespace Modelo.Domain.CommandHandlers
     {
         private readonly IFuncionarioReadOnlyRepository _funcionarioReadOnlyRepository;
         private readonly IFuncionarioRepository _funcionarioRepository;
-        private readonly IMediatorHandler Bus;
+        private readonly IMediatorHandlerNormalize Bus;
 
         public FuncionarioCommandHandler(IFuncionarioReadOnlyRepository funcionarioReadOnlyRepository,
                                       IFuncionarioRepository funcionarioRepository,
                                       IUnitOfWork uow,
-                                      IMediatorHandler bus,
+                                      IMediatorHandlerNormalize bus,
                                       INotificationHandler<DomainNotification> notifications) : base(uow, bus, notifications)
         {
             _funcionarioReadOnlyRepository = funcionarioReadOnlyRepository;

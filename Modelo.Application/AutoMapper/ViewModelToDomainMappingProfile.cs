@@ -1,7 +1,7 @@
 ﻿
 using AutoMapper;
 using Modelo.Application.ViewModels;
-using Modelo.Domain.Commands.Funcionario;
+using Modelo.Domain.Commands.Funcionario.Normalize;
 
 namespace Modelo.Application.AutoMapper
 {

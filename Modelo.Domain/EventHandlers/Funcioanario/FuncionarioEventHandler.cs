@@ -1,8 +1,7 @@
 ﻿using MediatR;
+using Modelo.Domain.Commands.Funcionario.Denormalize;
+using Modelo.Domain.Core.Bus.Denormalize;
 using Modelo.Domain.Events.Funcionario;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,23 +12,33 @@ namespace Modelo.Domain.EventHandlers.Funcioanario
         INotificationHandler<FuncionarioUpdatedEvent>,
         INotificationHandler<FuncionarioRemovedEvent>
     {
+        private readonly IMediatorHandlerDenormalize BusDenormalize;
+
+        public FuncionarioEventHandler(IMediatorHandlerDenormalize busDenormalize)
+        {
+            this.BusDenormalize = busDenormalize;
+        }
         public Task Handle(FuncionarioUpdatedEvent message, CancellationToken cancellationToken)
         {
-            // Send some notification e-mail
-
+            // Atualizar entidade no mongo
+            var updateDenormalize = new UpdateFuncionarioDenormalize(message.Id,message.Name, message.Email, message.DataAniversario);
+            BusDenormalize.SendDenormalize(updateDenormalize);
             return Task.CompletedTask;
         }
 
         public Task Handle(FuncionarioRegisteredEvent message, CancellationToken cancellationToken)
         {
             // Adicionar entidade no mongo
+            var registerDenormalize = new RegisterNewFuncionarioDenormalize(message.Id,message.Name, message.Email, message.DataAniversario);
+            BusDenormalize.SendDenormalize(registerDenormalize);
             return Task.CompletedTask;
         }
 
         public Task Handle(FuncionarioRemovedEvent message, CancellationToken cancellationToken)
         {
-            // Send some see you soon e-mail
-
+            // Remover entidade no mongo
+            var updateDenormalize = new RemoveFuncionarioDenormalize(message.Id);
+            BusDenormalize.SendDenormalize(updateDenormalize);
             return Task.CompletedTask;
         }
     }

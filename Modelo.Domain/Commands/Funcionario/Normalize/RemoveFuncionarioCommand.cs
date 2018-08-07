@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Modelo.Domain.Commands.Funcionario
+namespace Modelo.Domain.Commands.Funcionario.Normalize
 {
     public class RemoveFuncionarioCommand : FuncionarioCommand
     {

@@ -1,21 +1,18 @@
 ﻿using MediatR;
-using Modelo.Domain.Core.Bus;
+using Modelo.Domain.Core.Bus.Normalize;
 using Modelo.Domain.Core.Commands;
 using Modelo.Domain.Core.Notifications;
 using Modelo.Domain.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Modelo.Domain.CommandHandlers
+namespace Modelo.Domain.CommandHandlers.Normalize
 {
     public class CommandHandler
     {
         private readonly IUnitOfWork _uow;
-        private readonly IMediatorHandler _bus;
+        private readonly IMediatorHandlerNormalize _bus;
         private readonly DomainNotificationHandler _notifications;
 
-        public CommandHandler(IUnitOfWork uow, IMediatorHandler bus, INotificationHandler<DomainNotification> notifications)
+        public CommandHandler(IUnitOfWork uow, IMediatorHandlerNormalize bus, INotificationHandler<DomainNotification> notifications)
         {
             _uow = uow;
             _notifications = (DomainNotificationHandler)notifications;

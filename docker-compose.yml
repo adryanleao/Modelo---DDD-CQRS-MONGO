@@ -6,3 +6,8 @@ services:
     build:
       context: .
       dockerfile: Modelo.WebApi/Dockerfile
+    depends_on:
+      - nosql.data
+
+  nosql.data:
+    image: mongo

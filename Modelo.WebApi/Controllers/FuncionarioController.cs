@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Modelo.Application.Interfaces;
 using Modelo.Application.ViewModels;
-using Modelo.Domain.Core.Bus;
+using Modelo.Domain.Core.Bus.Normalize;
 using Modelo.Domain.Core.Notifications;
 using System;
 
@@ -14,7 +14,7 @@ namespace Modelo.WebApi.Controllers
         public FuncionarioController(
             IFuncionarioAppService funcionarioAppService,
             INotificationHandler<DomainNotification> notifications,
-            IMediatorHandler mediator) : base(notifications, mediator)
+            IMediatorHandlerNormalize mediator) : base(notifications, mediator)
         {
             _funcionarioAppService = funcionarioAppService;
         }

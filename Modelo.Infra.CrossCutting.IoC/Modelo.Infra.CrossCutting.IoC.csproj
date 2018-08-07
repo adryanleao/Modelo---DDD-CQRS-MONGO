@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Infra.Data.Mongo\Infra.Data.Mongo.csproj" />
     <ProjectReference Include="..\Modelo.Application\Modelo.Application.csproj" />
     <ProjectReference Include="..\Modelo.Domain\Modelo.Domain.csproj" />
     <ProjectReference Include="..\Modelo.Infra.CrossCutting.Bus\Modelo.Infra.CrossCutting.Bus.csproj" />

@@ -1,9 +1,9 @@
 ﻿using Modelo.Domain.Core.Commands;
 using System;
 
-namespace Modelo.Domain.Commands.Funcionario
+namespace Modelo.Domain.Commands.Funcionario.Denormalize
 {
-    public abstract class FuncionarioCommand : Command
+    public abstract class FuncionarioDenormalize : Command
     {
         public Guid Id { get; protected set; }
 
