@@ -11,3 +11,6 @@ services:
 
   nosql.data:
     image: mongo
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine

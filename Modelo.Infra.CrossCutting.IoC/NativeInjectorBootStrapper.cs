@@ -38,8 +38,8 @@ namespace Modelo.Infra.CrossCutting.IoC
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             // Domain Bus (Mediator)
-            services.AddScoped<IMediatorHandlerNormalize, InMemoryBusNormalize>();
-            services.AddScoped<IMediatorHandlerDenormalize, InMemoryBusDenormalize>();
+            //services.AddScoped<IMediatorHandlerNormalize, InMemoryBusNormalize>();
+            //services.AddScoped<IMediatorHandlerDenormalize, InMemoryBusDenormalize>();
 
             // Application
             services.AddScoped<IFuncionarioAppService, FuncionarioAppService>();
@@ -68,6 +68,10 @@ namespace Modelo.Infra.CrossCutting.IoC
             services.AddScoped<IFuncionarioRepositoryDenormalize, FuncionarioRepositoryDenormalize>();
             services.AddScoped<IFuncionarioReadOnlyRepositoryDenormalize, FuncionarioReadOnlyRepositoryDenormalize>();
             services.AddScoped<MongoDbContext>();
+
+            //RabbitMQ - infra
+            services.AddScoped<IMediatorHandlerNormalize, InMemoryBusNormalize>();
+            services.AddScoped<IMediatorHandlerDenormalize, InMemoryBusDenormalize>();
         }
 
         public static void MigrateDB(IApplicationBuilder app)
