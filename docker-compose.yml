@@ -11,6 +11,9 @@ services:
 
   nosql.data:
     image: mongo
+    networks:
+      static-network:
+        ipv4_address: 172.20.128.2
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
