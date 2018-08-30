@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Modelo.Infra.CrossCutting.IoC;
 using Modelo.WebApi.Configurations;
 using Swashbuckle.AspNetCore.Swagger;
+using System;
 
 namespace Modelo.WebApi
 {
@@ -61,6 +62,8 @@ namespace Modelo.WebApi
 
             if (env.IsDevelopment())
             {
+                var teste = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+                var teste2 = Environment.GetEnvironmentVariable("Teste");
                 app.UseDeveloperExceptionPage();
             }
 
