@@ -1,5 +1,6 @@
 ﻿using Modelo.Domain.Models;
 using MongoDB.Driver;
+using System;
 
 namespace Infra.Data.Mongo.Context
 {
@@ -11,7 +12,8 @@ namespace Infra.Data.Mongo.Context
         public IMongoDatabase Database { get; }
         public MongoDbContext()
         {
-            MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl("mongodb://mongodb-mongo.172.16.70.17.nip.io:27017"));
+            //MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl("mongodb://mongodb:27017"));
+            MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(Environment.GetEnvironmentVariable("DefaultConnectionMongo")));
             if (true)
             {
                 settings.SslSettings = new SslSettings { EnabledSslProtocols = System.Security.Authentication.SslProtocols.Tls12 };
