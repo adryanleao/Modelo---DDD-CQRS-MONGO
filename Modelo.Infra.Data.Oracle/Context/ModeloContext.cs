@@ -2,8 +2,6 @@
 using Modelo.Infra.Data.Oracle.Mappings;
 using System;
 using Microsoft.EntityFrameworkCore;
-using Oracle.ManagedDataAccess.Client;
-using Modelo.Infra.Data.Oracle.Utilities;
 
 namespace Modelo.Infra.Data.Oracle.Context
 {
