@@ -27,12 +27,12 @@ namespace Modelo.Infra.Data.Oracle.Context
             //    .AddJsonFile("appsettings.json")
             //    .Build();
             // define the database to use
-            var connectionStringBuilder = new OracleConnectionStringBuilder
-                {
-                    DataSource = "//exa02-scan-cassi:1521/SOCTSTBD001",
-                    UserID = "usrpoc",
-                    Password = "teste123"
-                }.ConnectionString;
+            //var connectionStringBuilder = new OracleConnectionStringBuilder
+            //    {
+            //        DataSource = "//exa02-scan-cassi:1521/SOCTSTBD001",
+            //        UserID = "usrpoc",
+            //        Password = "teste123"
+            //    }.ConnectionString;
 
             //var _oracleConnection = new OracleConnection
             //{
@@ -42,7 +42,7 @@ namespace Modelo.Infra.Data.Oracle.Context
 
             //_oracleConnection.Close();
 
-            optionsBuilder.UseOracle(connectionStringBuilder)
+            optionsBuilder.UseOracle(Environment.GetEnvironmentVariable("DefaultConnection"))
             .UseInternalServiceProvider(_serviceProvider);
             base.OnConfiguring(optionsBuilder);
         }
