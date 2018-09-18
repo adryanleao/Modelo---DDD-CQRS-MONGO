@@ -12,12 +12,12 @@ namespace Infra.Data.Mongo.Context
         public IMongoDatabase Database { get; }
         public MongoDbContext()
         {
-            //MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl("mongodb://mongodb:27017"));
-            MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(Environment.GetEnvironmentVariable("DefaultConnectionMongo")));
-            if (true)
-            {
-                settings.SslSettings = new SslSettings { EnabledSslProtocols = System.Security.Authentication.SslProtocols.Tls12 };
-            }
+            MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl("mongodb://mongodb:27017"));
+            // MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl("mongodb://localhost:27017"));
+            settings.Credential = MongoCredential.CreateCredential(Environment.GetEnvironmentVariable("MongoDataBase"), Environment.GetEnvironmentVariable("MongoUser"), Environment.GetEnvironmentVariable("MongoPassword"));
+            settings.UseSsl = true;
+            settings.VerifySslCertificate = false;
+            settings.SslSettings = new SslSettings { CheckCertificateRevocation = false };
             var mongoClient = new MongoClient(settings);
             Database = mongoClient.GetDatabase("Modelo");
         }
