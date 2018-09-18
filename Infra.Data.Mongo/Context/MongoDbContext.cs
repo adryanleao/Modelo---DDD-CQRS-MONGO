@@ -17,9 +17,9 @@ namespace Infra.Data.Mongo.Context
             settings.Credential = MongoCredential.CreateCredential(Environment.GetEnvironmentVariable("MongoDataBase"), Environment.GetEnvironmentVariable("MongoUser"), Environment.GetEnvironmentVariable("MongoPassword"));
             settings.UseSsl = true;
             settings.VerifySslCertificate = false;
-            settings.SslSettings = new SslSettings { CheckCertificateRevocation = false };
+            settings.SslSettings = new SslSettings(){ CheckCertificateRevocation = false };
             var mongoClient = new MongoClient(settings);
-            Database = mongoClient.GetDatabase("Modelo");
+           // Database = mongoClient.GetDatabase("Modelo");
         }
         public IMongoCollection<Funcionario> Funcionarios
         {
