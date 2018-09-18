@@ -29,8 +29,8 @@ namespace Modelo.Domain.EventHandlers.Funcioanario
         public Task Handle(FuncionarioRegisteredEvent message, CancellationToken cancellationToken)
         {
             // Adicionar entidade no mongo
-            var registerDenormalize = new RegisterNewFuncionarioDenormalize(message.Id,message.Name, message.Email, message.DataAniversario);
-            BusDenormalize.SendDenormalize(registerDenormalize);
+            //var registerDenormalize = new RegisterNewFuncionarioDenormalize(message.Id,message.Name, message.Email, message.DataAniversario);
+            //BusDenormalize.SendDenormalize(registerDenormalize);
             return Task.CompletedTask;
         }
 

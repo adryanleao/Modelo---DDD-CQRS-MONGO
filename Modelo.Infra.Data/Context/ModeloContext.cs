@@ -27,8 +27,9 @@ namespace Modelo.Infra.Data.Context
             //    .Build();
 
             // define the database to use
-            optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("DefaultConnection"));
-            //optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Modeloa;Trusted_Connection=True;MultipleActiveResultSets=true");
+            //optionsBuilder.UseSqlServer(Environment.GetEnvironmentVariable("DefaultConnection"));
+              optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Modeloa;Trusted_Connection=True;MultipleActiveResultSets=true");
+           // optionsBuilder.UseSqlServer("Server=172.16.70.91;Database=Modelo;User Id=casrhoxsi; Password=efarhoxtec;MultipleActiveResultSets=true");
         }
     }
 }
