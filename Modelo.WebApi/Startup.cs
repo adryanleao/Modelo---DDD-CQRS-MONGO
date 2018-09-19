@@ -41,7 +41,7 @@ namespace Modelo.WebApi
                 s.SwaggerDoc("v1", new Info
                 {
                     Version = "v1",
-                    Title = "Modelo arquitetura micro serviços",
+                    Title = "Modelo arquitetura orientada a serviços",
                     Description = "API Swagger surface",
                     Contact = new Contact { Name = "Adryan leão", Email = "adryan.silva@cassi.com.br", Url = "http://cassi.com.br" },
                     License = new License { Name = "Cassi", Url = "http://cassi.com.br" }

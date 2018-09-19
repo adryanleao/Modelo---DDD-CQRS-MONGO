@@ -12,22 +12,22 @@ namespace Infra.Data.Mongo.Context
         public IMongoDatabase Database { get; }
         public MongoDbContext()
         {
-            MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl("mongodb://mongodb:27017"));
-            //  MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl("mongodb://localhost:27017"));
-            //  settings.Credential = MongoCredential.CreateCredential("test", "ModeloUser", "$enha123");
-            // settings.UseSsl = true;
-            // settings.VerifySslCertificate = false;
-            settings.SslSettings = new SslSettings() { EnabledSslProtocols = System.Security.Authentication.SslProtocols.Tls12 };
-            var mongoClient = new MongoClient(settings);
-            Database = mongoClient.GetDatabase("test");
             //MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl("mongodb://mongodb:27017"));
-            //// MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl("mongodb://localhost:27017"));
-            //settings.Credential = MongoCredential.CreateCredential(Environment.GetEnvironmentVariable("MongoDataBase"), Environment.GetEnvironmentVariable("MongoUser"), Environment.GetEnvironmentVariable("MongoPassword"));
-            ////settings.UseSsl = true;
-            ////settings.VerifySslCertificate = false;
-            ////settings.SslSettings = new SslSettings() { EnabledSslProtocols = System.Security.Authentication.SslProtocols.Tls12 };
+            ////  MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl("mongodb://localhost:27017"));
+            ////  settings.Credential = MongoCredential.CreateCredential("test", "ModeloUser", "$enha123");
+            //// settings.UseSsl = true;
+            //// settings.VerifySslCertificate = false;
+            //settings.SslSettings = new SslSettings() { EnabledSslProtocols = System.Security.Authentication.SslProtocols.Tls12 };
             //var mongoClient = new MongoClient(settings);
-            //Database = mongoClient.GetDatabase(Environment.GetEnvironmentVariable("MongoDataBase"));
+            //Database = mongoClient.GetDatabase("test");
+            MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(Environment.GetEnvironmentVariable("DefaultConnectionMongo")));
+            // MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl("mongodb://localhost:27017"));
+            settings.Credential = MongoCredential.CreateCredential(Environment.GetEnvironmentVariable("MongoUser"), Environment.GetEnvironmentVariable("MongoUser"), Environment.GetEnvironmentVariable("MongoPassword"));
+            //settings.UseSsl = true;
+            //settings.VerifySslCertificate = false;
+            //settings.SslSettings = new SslSettings() { EnabledSslProtocols = System.Security.Authentication.SslProtocols.Tls12 };
+            var mongoClient = new MongoClient(settings);
+            Database = mongoClient.GetDatabase(Environment.GetEnvironmentVariable("MongoDataBase"));
         }
 
     }
