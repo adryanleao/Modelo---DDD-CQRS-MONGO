@@ -20,7 +20,7 @@ namespace Infra.Data.Mongo.Context
             //settings.SslSettings = new SslSettings() { EnabledSslProtocols = System.Security.Authentication.SslProtocols.Tls12 };
             //var mongoClient = new MongoClient(settings);
             //Database = mongoClient.GetDatabase("test");
-            MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(Environment.GetEnvironmentVariable("DefaultConnectionMongo")));
+            MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl("mongodb://mongodb:27017"));
             // MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl("mongodb://localhost:27017"));
             settings.Credential = MongoCredential.CreateCredential(Environment.GetEnvironmentVariable("MongoUser"), Environment.GetEnvironmentVariable("MongoUser"), Environment.GetEnvironmentVariable("MongoPassword"));
             //settings.UseSsl = true;
